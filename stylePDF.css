@@ -1,0 +1,14 @@
+#dataCustomer {
+  min-height: 100vh;
+}
+
+#dataCustomer .header {
+  text-align: center;
+}
+#dataCustomer .sub-judul {
+  text-align: left;
+}
+
+#dataCustomer tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
