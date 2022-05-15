@@ -116,7 +116,7 @@ $user = query("SELECT * FROM users WHERE id = $id_user")[0];
                     </div>
                     <div class="col-md-2">
                         <label for="opsi_pengiriman">Opsi Pengiriman</label>
-                        <select class="form-control" name="opsi_pengiriman" id="opsi_pengiriman">
+                        <select class="form-control" name="opsi_pengiriman" id="opsi_pengiriman" required>
                             <option value="">Pilih Opsi Pengiriman</option>
                             <option value="Ambil sendiri">Ambil sendiri</option>
                             <option value="Di antar">Di antar</option>
@@ -125,7 +125,7 @@ $user = query("SELECT * FROM users WHERE id = $id_user")[0];
                     </div>
                     <div class="col-md-2">
                         <label for="opsi_pembayaran">Opsi Pembayaran</label>
-                        <select class="form-control" name="opsi_pembayaran" id="opsi_pembayaran">
+                        <select class="form-control" name="opsi_pembayaran" id="opsi_pembayaran" required>
                             <option value="">Pilih Opsi Pembayaran</option>
                             <option value="Transfer">Transfer</option>
                             <option value="COD">COD</option>

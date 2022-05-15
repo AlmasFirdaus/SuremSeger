@@ -87,7 +87,7 @@ if (isset($_POST["kirim"])) {
                 </div>
                 <div class="form-group">
                     <label for="jumlah">Jumlah</label>
-                    <input type="number" class="form-control" name="jumlah" id="jumlah" min="1">
+                    <input type="text" class="form-control" name="jumlah" id="jumlah" value="Rp. <?= number_format($detail_pembelian['total_pembelian']); ?>" readonly>
                 </div>
                 <div class="form-group">
                     <label for="gambar">Foto bukti</label>
