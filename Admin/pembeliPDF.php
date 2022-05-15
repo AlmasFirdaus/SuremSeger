@@ -14,6 +14,7 @@ if ($_SESSION['role'] != 1) {
 
 require_once('../functions.php');
 
+$semuaData = array();
 $dataKeuntungan[] = array();
 $dataKeuntungan['keuntungan'] = 0;
 $tgl_mulai = '-';
@@ -22,6 +23,7 @@ $tgl_selesai = '-';
 $id = $_SESSION['user']['id'];
 
 $user = query("SELECT * FROM users WHERE id = $id")[0];
+// $data = query("SELECT * FROM users WHERE role = 2");
 
 if (isset($_GET['id'])) {
     $id_pembelian = $_GET['id'];
@@ -70,15 +72,19 @@ if (isset($_POST['kirim'])) {
 
 <body>
 
-    <!-- Navbar Sidebar Admin -->
-    <?php include 'nav_sidebar.php' ?>
+    <header class="mt-5 justify-content-center text-center">
+        <h2>SUSU REMBANGAN</h2>
+        <h5>Jl. Rembangan No.13, Darungan, Kemuning Lor, Arjasa, Jember jawa timur</h5>
+        <hr>
+    </header>
+
 
     <!-- Tabel Data Customer -->
     <section id="dataCustomer">
         <div class="container" style="min-height: 310px;">
 
             <!-- <table class="table table-striped table-hover"> -->
-            <h2>Laporan Transaksi Pembelian periode <?= $tgl_mulai; ?> hingga <?= $tgl_selesai; ?></h2>
+            <h3>Laporan Transaksi Pembelian periode <?= $tgl_mulai; ?> hingga <?= $tgl_selesai; ?></h3>
             <hr>
 
             <form action="" method="post">
@@ -122,11 +128,6 @@ if (isset($_POST['kirim'])) {
                         <input type="text" class="form-control mb-2" name="keuntungan" id="keuntungan" value="Rp. <?= number_format($dataKeuntungan['keuntungan'] * 40 / 100); ?> " readonly>
                     </div>
                 </div>
-                <div class="col-md-5">
-                    <br>
-                    <a href="../download_laporan.php?tglm=<?= $tgl_mulai; ?>&tgls=<?= $tgl_selesai; ?>" class="btn btn-primary">Cetak Laporan</a>
-                </div>
-
             </div>
 
             <hr>

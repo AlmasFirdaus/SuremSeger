@@ -54,7 +54,6 @@
                      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Data Pembeli</a>
                      <ul class="dropdown-menu">
                          <li><a class="dropdown-item" href="./dataPesanan.php">Data Pesanan</a></li>
-                         <li><a class="dropdown-item" href="./dataPembeli.php">Data Pembeli</a></li>
                          <li><a class="dropdown-item" href="./dataPembatalan.php">Data Pembatalan</a></li>
                      </ul>
                  </li>
@@ -74,6 +73,15 @@
                      <ul class="dropdown-menu">
                          <li><a class="nav-link" href="./dataAdmin.php">Data Admin</a></li>
                          <li><a class="nav-link" href="./dataCustomer.php">Data Customer</a></li>
+                     </ul>
+                 </li>
+             </ul>
+             <ul class="nav nav-pills flex-column">
+                 <li class="nav-item dropdown">
+                     <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Laporan</a>
+                     <ul class="dropdown-menu">
+                         <li><a class="dropdown-item" href="./dataPembeli.php">Data Transaksi Pembelian</a></li>
+                         <li><a class="dropdown-item" href="./dataPenjualanProduk.php">Data Penjualan Produk</a></li>
                      </ul>
                  </li>
              </ul>

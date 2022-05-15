@@ -14,10 +14,33 @@ if ($_SESSION['role'] != 1) {
 
 require_once('../functions.php');
 
+$diterimas = array();
+$dataKeuntungan = array();
+$tgl_mulai = '-';
+$tgl_selesai = '-';
+
 $id = $_SESSION['user']['id'];
 
 $user = query("SELECT * FROM users WHERE id = $id")[0];
 // $data = query("SELECT * FROM users WHERE role = 2");
+
+
+// $conn->query("UPDATE pembelian SET status_terima = 'Sudah diterima' WHERE id_pembelian = '$id_pembelian'");
+
+// $diterima = query("SELECT * FROM pembelian JOIN users ON pembelian.id_user = users.id WHERE pembelian.status_terima = 'Sudah diterima'");
+
+if (isset($_POST['kirim'])) {
+    $tgl_mulai = $_POST['tglm'];
+    $tgl_selesai = $_POST['tgls'];
+
+    $diterimas = query("SELECT * FROM pembelian JOIN users ON pembelian.id_user = users.id 
+                        WHERE pembelian.status_terima = 'Sudah diterima' 
+                        And tanggal_pembelian BETWEEN '$tgl_mulai' AND '$tgl_selesai'");
+
+    foreach ($diterimas as $diterima) {
+        $dataKeuntungan['keuntungan'] += $diterima['total_pembelian'];
+    }
+}
 
 ?>
 
@@ -48,7 +71,32 @@ $user = query("SELECT * FROM users WHERE id = $id")[0];
         <div class="container" style="min-height: 310px;">
 
             <!-- <table class="table table-striped table-hover"> -->
-            <h2>Data Pesanan</h2>
+            <?php if (!empty($dataKeuntungan)) : ?>
+                <?= $dataKeuntungan['keuntungan'] * 30 / 100 ?>
+            <?php endif; ?>
+            <h2>Rekapitulasi periode <?= $tgl_mulai; ?> hingga <?= $tgl_selesai; ?></h2>
+            <hr>
+
+            <form action="" method="post">
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="tglm">Tanggal Mulai</label>
+                            <input type="date" class="form-control" name="tglm" id="tglm" value="<?= $tgl_mulai; ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label for="tgls">Tanggal Selesai</label>
+                            <input type="date" class="form-control" name="tgls" id="tgls" value="<?= $tgl_selesai; ?>">
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <br>
+                        <button class="btn btn-primary" name="kirim">Lihat</button>
+                    </div>
+                </div>
+            </form>
 
             <table class="table table-striped table-hover align-middle mt-5">
                 <thead>
@@ -56,45 +104,24 @@ $user = query("SELECT * FROM users WHERE id = $id")[0];
                         <th>No</th>
                         <th>Nama Pelanggan</th>
                         <th>Tanggal</th>
-                        <th>Status</th>
                         <th>Status Terima</th>
-                        <th>Opsi Pengiriman</th>
-                        <th>Opsi Pembayaran</th>
                         <th>Total</th>
                         <th>Aksi</th>
-                        <th>Barang Diterima</th>
                     </tr>
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php $ambil = query("SELECT * FROM pembelian JOIN users ON pembelian.id_user = users.id WHERE pembelian.status_terima = 'Belum diterima' ORDER BY pembelian.id_pembelian ASC"); ?>
-                    <?php foreach ($ambil as $data) : ?>
+                    <?php foreach ($diterimas as $data) : ?>
                         <!-- <?php $ambil = query("SELECT * FROM pembelian JOIN users ON pembelian.id_user = users.id")[$i - 1]; ?> -->
                         <!-- <pre><?php print_r($data); ?></pre> -->
                         <tr>
                             <td><?= $i; ?></td>
                             <td><?= $data['namalengkap']; ?></td>
-                            <td><?= $data['tanggal_pembelian']; ?></td>
-                            <td><?= $data['status_pembelian']; ?></td>
+                            <td><?= date("d-m-Y", strtotime($data['tanggal_pembelian'])); ?></td>
                             <td><?= $data['status_terima']; ?></td>
-                            <td><?= $data['opsi_pengiriman']; ?></td>
-                            <td><?= $data['opsi_pembayaran']; ?></td>
                             <td><?= $data['total_pembelian']; ?></td>
                             <td>
                                 <a href="detail.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-info btn-sm">Detail</a>
-                                <?php
-                                if ($data['status_pembelian'] == "Sudah kirim Pembayaran") : ?>
-                                    <a href="pembayaran.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-success btn-sm">Pembayaran</a>
-                                <?php elseif ($data['opsi_pembayaran'] == "COD") : ?>
-                                    <a href="ambilSendiri.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-success btn-sm">Ambil</a>
-                                <?php elseif ($data['status_pembelian'] == "Proses pembatalan") : ?>
-                                    <a href="pembatalan.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-danger btn-sm">Pembatalan</a>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if ($data['status_terima'] == 'Belum diterima') : ?>
-                                    <a href="status_terima.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-primary" onclick="return confirm('yakin barang telah diterima?');">Pesanan Diterima</a>
-                                <?php endif; ?>
                             </td>
                         </tr>
                         <?php $i++ ?>

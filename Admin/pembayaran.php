@@ -94,8 +94,8 @@ $detail = query("SELECT * FROM pembayaran JOIN pembelian ON pembayaran.id_pembel
                             <label for="status">Status</label>
                             <select class="form-control" id="status" name="status">
                                 <option value="">Pilih Status</option>
-                                <option value="Proses pengiriman">Proses pengantaran</option>
-                                <option value="Proses pengiriman">Proses pengiriman</option>
+                                <option value="Proses pengantaran">Proses pengantaran</option>
+                                <!-- <option value="Proses pengiriman">Proses pengiriman</option> -->
                                 <option value="Siap diambil">Siap diambil</option>
                                 <option value="Batal">Batal</option>
                             </select>

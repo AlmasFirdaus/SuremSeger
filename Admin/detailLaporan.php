@@ -118,6 +118,8 @@ $user = query("SELECT * FROM users WHERE id = $id")[0];
                 </tbody>
             </table>
 
+            <a href="dataPembeli.php" class="btn btn-primary">Kembali</a>
+
         </div>
     </section>
 
