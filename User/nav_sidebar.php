@@ -80,16 +80,16 @@
                  <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">Laporan</a>
                      <ul class="dropdown-menu">
-                         <li><a class="dropdown-item" href="../admin/dataPembeli.php">Data Transaksi Pembelian</a></li>
-                         <li><a class="dropdown-item" href="../admin//dataPenjualanProduk.php">Data Penjualan Produk</a></li>
+                         <li><a class="dropdown-item" href="../admin/dataPembeli.php">Laporan Transaksi Pembelian</a></li>
+                         <li><a class="dropdown-item" href="../admin/dataPenjualanProduk.php">Laporan Penjualan Produk</a></li>
                      </ul>
                  </li>
              </ul>
              <ul class="nav nav-pills flex-column">
-                 <li class="nav-item">
+                 <!-- <li class="nav-item">
                      <a class="nav-link" href="../user/keranjang.php">Keranjang Belanja</a>
                      <a class="nav-link" href="../user/riwayat.php">Riwayat Pembelian</a>
-                 </li>
+                 </li> -->
              </ul>
          </div>
          <div class="offcanvas-footer gap-2 d-flex justify-content-center m-3">

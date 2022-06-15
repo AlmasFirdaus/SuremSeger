@@ -75,6 +75,7 @@ if (isset($_POST['beli'])) {
         <div class="container" style="background-color: white; padding: 30px">
             <!-- <pre><?= print_r($produk); ?></pre> -->
             <h1>Produk</h1>
+            <!-- <pre><?= print_r($user); ?></pre> -->
             <hr>
             <div class="box">
                 <div class="row">
@@ -93,7 +94,11 @@ if (isset($_POST['beli'])) {
                                     <div class="input-group">
                                         <input type="number" min="1" max="<?= $produk['stock_produk']; ?>" value="1" class="form-control" name="jumlah" id="jumlah">
                                         <div class="input-group-btn">
-                                            <button class="btn btn-primary" name="beli">Beli</button>
+                                            <?php if ($user['role'] != 1) : ?>
+                                                <button class="btn btn-primary" name="beli">Beli</button>
+                                            <?php else : ?>
+                                                <button class="btn btn-primary">Beli</button>
+                                            <?php endif; ?>
                                         </div>
                                     </div>
                                 </div>
