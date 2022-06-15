@@ -116,9 +116,9 @@ $html = '<!DOCTYPE html>
             <!-- <table class="table table-striped table-hover"> -->';
 if ($tgl_mulai == '-') {
 
-    $html .= '<h3 class="sub-judul">Laporan Transaksi Pembelian Keseluruhan</h3>';
+    $html .= '<h3 class="sub-judul">Laporan Transaksi Penjualan Produk Keseluruhan</h3>';
 } else {
-    $html .= '<h3>Laporan Transaksi Pembelian periode ' . $tgl_mulai . ' hingga ' . $tgl_selesai . '</h3>';
+    $html .= '<h3>Laporan Transaksi Penjualan Produk Periode ' . $tgl_mulai . ' hingga ' . $tgl_selesai . '</h3>';
 }
 $html .= '
      <table border="1" cellpadding="10" cellspacing="0">
@@ -131,14 +131,22 @@ $html .= '
                 </thead>
                 <tbody>';
 $i = 1;
-foreach ($data_rekaps["produk"] as $key => $value) {
-    $html .= '<tr>
-                            <td>' . $i . '</td>
-                            <td>' . $value["nama_produk"] . '</td>
-                            <td>' . $value["jumlah_produk"] . '</td>
-                        </tr>';
+if (isset($data_rekaps["produk"])) {
+    foreach ($data_rekaps["produk"] as $key => $value) {
+        $html .= '<tr>
+                                <td>' . $i . '</td>
+                                <td>' . $value["nama_produk"] . '</td>
+                                <td>' . $value["jumlah_produk"] . '</td>
+                            </tr>';
 
-    $i++;
+        $i++;
+    }
+} else {
+    $html .= '<tr>
+                <td colspan="3" class="text-center">
+                    Tidak ada data penjualan
+                </td>
+            </tr>';
 }
 
 $html .= '                         <tr>
@@ -157,4 +165,5 @@ $html .= '                         <tr>
 </html>';
 
 $mpdf->WriteHTML($html);
-$mpdf->Output('Laporan-Penjualan-Produk.pdf', \Mpdf\Output\Destination::INLINE);
+// $mpdf->Output('Laporan-Penjualan-Produk.pdf', \Mpdf\Output\Destination::INLINE);
+$mpdf->Output('Laporan-Penjualan-Produk - Periode ' . $tgl_mulai . ' hingga ' . $tgl_selesai . '.pdf', \Mpdf\Output\Destination::INLINE);

@@ -39,7 +39,7 @@ if (isset($_POST["register"])) {
     <nav class="navbar navbar-expand-sm navbar-light shadow-sm" id="navbar">
         <div class="container d-flex justify-content-start">
             <a class="navbar-brand" href="index.php">
-                <img src="https://cdn.icon-icons.com/icons2/1286/PNG/512/90_85241.png" alt="" width="30" height="24" class="d-inline-block align-text-top" />
+                <img src="./assets/img/sapi icon.png" alt="" width="30" height="24" class="d-inline-block align-text-top" />
                 Surem Seger
             </a>
             <div class="hstack gap-3">
@@ -60,39 +60,39 @@ if (isset($_POST["register"])) {
                         <div class="row">
                             <div class="col-md-12 mb-3">
                                 <label for="regnamalengkap" class="form-label">Nama Lengkap</label>
-                                <input type="text" class="form-control" name="regnamalengkap" id="regnamalengkap">
+                                <input type="text" class="form-control" name="regnamalengkap" id="regnamalengkap" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="regemail" class="form-label">Email</label>
-                                <input type="email" class="form-control" name="regemail" id="regemail">
+                                <input type="email" class="form-control" name="regemail" id="regemail" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="regnohp" class="form-label">No HP</label>
-                                <input type="text" class="form-control" name="regnohp" id="regnohp">
+                                <input type="text" class="form-control" name="regnohp" id="regnohp" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="regpassword" class="form-label">Password</label>
-                                <input type="password" class="form-control" name="regpassword" id="regpassword">
+                                <input type="password" class="form-control" name="regpassword" id="regpassword" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="regpassword2" class="form-label">Konfirmasi Password</label>
-                                <input type="password" class="form-control" name="regpassword2" id="regpassword2">
+                                <input type="password" class="form-control" name="regpassword2" id="regpassword2" required>
                             </div>
                             <div class="col-12 mb-3">
                                 <label for="regalamat" class="form-label">Alamat</label>
-                                <input type="text" class="form-control" name="regalamat" id="regalamat">
+                                <input type="text" class="form-control" name="regalamat" id="regalamat" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="regprovinsi" class="form-label">Provinsi</label>
-                                <input type="text" class="form-control" name="regprovinsi" id="regprovinsi">
+                                <input type="text" class="form-control" name="regprovinsi" id="regprovinsi" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="regkota" class="form-label">Kota</label>
-                                <input type="text" class="form-control" name="regkota" id="regkota">
+                                <input type="text" class="form-control" name="regkota" id="regkota" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="regkecamatan" class="form-label">Kecamatan</label>
-                                <input type="text" class="form-control" name="regkecamatan" id="regkecamatan">
+                                <input type="text" class="form-control" name="regkecamatan" id="regkecamatan" required>
                             </div>
                             <div class="col-md-6 mb-3">
                                 <label for="regkodepos" class="form-label">Kode Pos</label>

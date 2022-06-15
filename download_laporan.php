@@ -76,9 +76,9 @@ $html = '<!DOCTYPE html>
 
 if ($_GET['tglm'] === '-') {
 
-    $html .= '<h3 class="sub-judul">Laporan Transaksi Pembelian Keseluruhan</h3>';
+    $html .= '<h3 class="sub-judul">Laporan Keuangan</h3>';
 } else {
-    $html .= '<h3>Laporan Transaksi Pembelian periode ' . $tgl_mulai . ' hingga ' . $tgl_selesai . '</h3>';
+    $html .= '<h3>Laporan Keuangan ' . $tgl_mulai . ' hingga ' . $tgl_selesai . '</h3>';
 }
 
 $html .= '
@@ -107,9 +107,9 @@ $html .= '
 
 if ($_GET['tglm'] === '-') {
 
-    $html .= '<h3 class="sub-judul"> Detail Laporan Transaksi Pembelian Keseluruhan</h3>';
+    $html .= '<h3 class="sub-judul">Laporan Transaksi Pembelian Keseluruhan</h3>';
 } else {
-    $html .= '<h3>Detail Laporan Transaksi Pembelian periode ' . $tgl_mulai . ' hingga ' . $tgl_selesai . '</h3>';
+    $html .= '<h3>Laporan Transaksi Pembelian periode ' . $tgl_mulai . ' hingga ' . $tgl_selesai . '</h3>';
 }
 
 $html .= '<table border="1" cellpadding="10" cellspacing="0">
@@ -124,17 +124,25 @@ $html .= '<table border="1" cellpadding="10" cellspacing="0">
                 </thead>
                 <tbody>';
 $i = 1;
-foreach ($diterimas as $data) {
-    $html .= '
-                        <tr>
-                            <td>' . $i . '</td>
-                            <td>' . $data["namalengkap"] . '</td>
-                            <td>' . date("d-m-Y", strtotime($data["tanggal_pembelian"])) . '</td>
-                            <td>' . $data["status_terima"] . '</td>
-                            <td>' . $data["total_pembelian"] . '</td>
-                        </tr>
-             ';
-    $i++;
+if (!empty($diterimas)) {
+    foreach ($diterimas as $data) {
+        $html .= '
+                            <tr>
+                                <td>' . $i . '</td>
+                                <td>' . $data["namalengkap"] . '</td>
+                                <td>' . date("d-m-Y", strtotime($data["tanggal_pembelian"])) . '</td>
+                                <td>' . $data["status_terima"] . '</td>
+                                <td>' . $data["total_pembelian"] . '</td>
+                            </tr>
+                 ';
+        $i++;
+    }
+} else {
+    $html .= '<tr>
+                <td colspan="6" class="text-center" id="text-center">
+                    Tidak ada data pembelian
+                </td>
+            </tr>';
 }
 $html .= '</tbody>
             </table>
@@ -148,4 +156,5 @@ $html .= '</tbody>
 </html>';
 
 $mpdf->WriteHTML($html);
-$mpdf->Output('Laporan-Transaksi-Pembelian.pdf', \Mpdf\Output\Destination::INLINE);
+// $mpdf->Output('Laporan-Transaksi-Penjualan.pdf', \Mpdf\Output\Destination::INLINE);
+$mpdf->Output('Laporan-Transaksi-Pembelian - periode ' . $tgl_mulai . ' hingga ' . $tgl_selesai . '.pdf', \Mpdf\Output\Destination::INLINE);
