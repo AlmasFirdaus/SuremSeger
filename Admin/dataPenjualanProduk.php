@@ -93,8 +93,10 @@ if (isset($_POST['kirim'])) {
 }
 
 $total_produk = 0;
-foreach ($data_rekaps['produk'] as $key => $value) {
-    $total_produk += $value['jumlah_produk'];
+if (isset($data_rekaps['produk'])) {
+    foreach ($data_rekaps['produk'] as $key => $value) {
+        $total_produk += $value['jumlah_produk'];
+    }
 }
 
 ?>
@@ -179,14 +181,22 @@ foreach ($data_rekaps['produk'] as $key => $value) {
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($data_rekaps["produk"] as $key => $value) : ?>
+                    <?php if (isset($data_rekaps["produk"])) : ?>
+                        <?php foreach ($data_rekaps["produk"] as $key => $value) : ?>
+                            <tr>
+                                <td><?= $i; ?></td>
+                                <td><?= $value["nama_produk"]; ?></td>
+                                <td><?= $value["jumlah_produk"]; ?></td>
+                            </tr>
+                            <?php $i++ ?>
+                        <?php endforeach; ?>
+                    <?php else : ?>
                         <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $value["nama_produk"]; ?></td>
-                            <td><?= $value["jumlah_produk"]; ?></td>
+                            <td colspan="3" class="text-center">
+                                Tidak ada data penjualan
+                            </td>
                         </tr>
-                        <?php $i++ ?>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
 

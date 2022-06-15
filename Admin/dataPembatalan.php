@@ -77,7 +77,7 @@ $diterima = query("SELECT * FROM pembelian JOIN users ON pembelian.id_user = use
                             <td><?= $data['tanggal_pembelian']; ?></td>
                             <td><?= $data['total_pembelian']; ?></td>
                             <td>
-                                <a href="detail.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-info btn-sm">Detail</a>
+                                <a href="detailPembatalan.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-info btn-sm">Detail</a>
                             </td>
                         </tr>
                         <?php $i++ ?>

@@ -104,6 +104,7 @@ if (isset($_POST['kirim'])) {
 
             <hr>
             <div class="row ">
+                <h2>Laporan Keuangan</h2>
                 <div class="col-md-5">
                     <div class="form-group">
                         <label for="total_penjualan"><strong>Total Penjualan</strong></label>
@@ -144,21 +145,30 @@ if (isset($_POST['kirim'])) {
                 </thead>
                 <tbody>
                     <?php $i = 1; ?>
-                    <?php foreach ($diterimas as $data) : ?>
-                        <!-- <?php $ambil = query("SELECT * FROM pembelian JOIN users ON pembelian.id_user = users.id")[$i - 1]; ?> -->
-                        <!-- <pre><?php print_r($data); ?></pre> -->
+                    <?php if (!empty($diterimas)) : ?>
+                        <!-- <pre><?= print_r($diterimas); ?></pre> -->
+                        <?php foreach ($diterimas as $data) : ?>
+                            <!-- <?php $ambil = query("SELECT * FROM pembelian JOIN users ON pembelian.id_user = users.id")[$i - 1]; ?> -->
+                            <!-- <pre><?php print_r($data); ?></pre> -->
+                            <tr>
+                                <td><?= $i; ?></td>
+                                <td><?= $data['namalengkap']; ?></td>
+                                <td><?= date("d-m-Y", strtotime($data['tanggal_pembelian'])); ?></td>
+                                <td><?= $data['status_terima']; ?></td>
+                                <td><?= $data['total_pembelian']; ?></td>
+                                <td>
+                                    <a href="detailLaporan.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-info btn-sm">Detail</a>
+                                </td>
+                            </tr>
+                            <?php $i++ ?>
+                        <?php endforeach; ?>
+                    <?php else : ?>
                         <tr>
-                            <td><?= $i; ?></td>
-                            <td><?= $data['namalengkap']; ?></td>
-                            <td><?= date("d-m-Y", strtotime($data['tanggal_pembelian'])); ?></td>
-                            <td><?= $data['status_terima']; ?></td>
-                            <td><?= $data['total_pembelian']; ?></td>
-                            <td>
-                                <a href="detailLaporan.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-info btn-sm">Detail</a>
+                            <td colspan="6" class="text-center">
+                                Tidak ada data Pembelian
                             </td>
                         </tr>
-                        <?php $i++ ?>
-                    <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
 

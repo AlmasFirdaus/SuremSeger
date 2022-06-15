@@ -81,7 +81,7 @@ $user = query("SELECT * FROM users WHERE id = $id")[0];
                             <td><?= $data['opsi_pembayaran']; ?></td>
                             <td><?= $data['total_pembelian']; ?></td>
                             <td>
-                                <a href="detail.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-info btn-sm">Detail</a>
+                                <a href="detailPesanan.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-info btn-sm">Detail</a>
                                 <?php
                                 if ($data['status_pembelian'] == "Sudah kirim Pembayaran") : ?>
                                     <a href="pembayaran.php?id=<?= $data['id_pembelian']; ?>" class="btn btn-success btn-sm">Pembayaran</a>
